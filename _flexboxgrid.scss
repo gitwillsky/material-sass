@@ -1,0 +1,137 @@
+// Grid breakpoints
+//
+// Define the minimum and maximum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+$grid-breakpoints: (
+  // Extra small screen / phone.
+  xs: 0,
+  // small screen / phone.
+  sm: 544px,
+  // Medium screen / tablet.
+  md: 768px,
+  // large screen / desktop.
+  lg: 992px,
+  // Extra large screen / wide desktop.
+  xl: 1200px
+  ) !default;
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+$container-max-widths: (
+  sm: 576px,
+  md: 720px,
+  lg: 940px,
+  xl: 1140px
+  ) !default;
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+$grid-columns: 12 !default;
+$grid-gutter-width: 1.875rem !default; // 30px
+// Grid Mixins
+//
+@mixin make-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+  $breakpoint-width: map-get($breakpoints, $name);
+  @if $breakpoint-width != 0 {
+    @media (min-width: $breakpoint-width) {
+      @content;
+    }
+  }
+  @else {
+    @content;
+  }
+}
+// Generate semantic grid columns with these mixins.
+@mixin make-container($gutter: $grid-gutter-width) {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: ($gutter / 2);
+  padding-right: ($gutter / 2);
+}
+// For each breakpoint, define the maximum width of the container in a media query
+@mixin make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $grid-breakpoints) {
+  @each $breakpoint,
+  $container-max-width in $max-widths {
+    @include make-breakpoint-up($breakpoint, $breakpoints) {
+      max-width: $container-max-width;
+    }
+  }
+}
+// Generate row
+@mixin make-row($gutter: $grid-gutter-width) {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: ($gutter / -2);
+  margin-right: ($gutter / -2);
+}
+// Generate col
+@mixin make-col($size, $columns: $grid-columns) {
+  position: relative;
+  min-height: 1px;
+  padding-right: ($grid-gutter-width / 2);
+  padding-left: ($grid-gutter-width / 2);
+  flex: 0 0 percentage($size / $columns);
+  max-width: percentage($size / $columns);
+}
+@mixin make-col-offset($size, $columns:$grid-columns) {
+  margin-left: percentage($size / $columns);
+}
+@mixin make-col-push($size, $columns: $grid-columns) {
+  left: if($size > 0, percentage($size / $columns), auto);
+}
+@mixin make-col-pull($size, $columns: $grid-columns) {
+  right: if($size > 0, percentage($size / $columns), auto);
+}
+@mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
+  @each $breakpoint in map-keys($breakpoints) {
+    @include make-breakpoint-up($breakpoint, $breakpoints) {
+      // .col-**
+      .col-#{$breakpoint} {
+        position: relative;
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+        min-height: 1px;
+        padding-left: ($gutter / 2);
+        padding-right: ($gutter / 2);
+      }
+      // .col-**-1 ... .col-**-12
+      @for $i from 1 through $columns {
+        .col-#{$breakpoint}-#{$i} {
+          @include make-col($i, $columns);
+        }
+      }
+      // .offset-**-1 ... .offset-**-11
+      @for $i from 1 through ($columns - 1) {
+        .offset-#{$breakpoint}-#{$i} {
+          @include make-col-offset($i, $columns);
+        }
+      }
+      // .pull  .push
+      @for $i from 0 through $columns {
+        .pull-#{$breakpoint}-#{$i} {
+          @include make-col-pull($i, $columns);
+        }
+        .push-#{$breakpoint}-#{$i} {
+          @include make-col-push($i, $columns);
+        }
+      }
+    }
+  }
+}
+// Grid
+//
+// Set the container width.
+.container {
+  @include make-container();
+  @include make-container-max-widths();
+}
+.container-fluid {
+  @include make-container();
+}
+// Rows contain your columns.
+.row {
+  @include make-row();
+}
+// col
+@include make-grid-columns();
