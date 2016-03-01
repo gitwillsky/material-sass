@@ -1,0 +1,156 @@
+@charset "UTF-8";
+@import "../reset";
+@import "../breakpoints";
+@import "../materialcolor";
+@import "../buttons";
+@import "../shadows";
+@import "../forms";
+@import "../buttons";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: material-color('grey', '100');
+}
+
+header {
+  /* 菜单shadow*/
+  @include box-shadow('z-depth-1');
+
+  /* 导航菜单列表*/
+  .nav-list {
+    background-color: material-color('blue', '700');
+    list-style: none;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+    /* phone style*/
+    @include breakpoint('phone') {
+      -webkit-flex-flow: column wrap;
+          -ms-flex-flow: column wrap;
+              flex-flow: column wrap;
+    }
+    li {
+      overflow: hidden;
+      padding: 0.8rem 1.5rem;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      @include breakpoint('phone') {
+        border-top: 1px solid rgba(0,0,0,.1);
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+      }
+    }
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+}
+
+article {
+  padding: 15px;
+
+  section {
+    margin-bottom: 2rem;
+  }
+}
+
+.shadows {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  justify-content: center;
+
+ @include breakpoint('phone') {
+   flex-flow: column wrap;
+   align-items: center;
+ }
+
+ @include breakpoint('tablet') {
+    justify-content: flex-start;
+ }
+
+  div[class^="card-"] {
+    margin: 15px 15px 0 15px;
+    border-radius: 2px;
+    height: 200px;
+    width: percentage(2/12);;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    @include breakpoint('phone') {
+      width: 90%;
+      margin: 15px 0 0 0;
+    }
+    @include breakpoint('tablet') {
+      width: percentage(1/4);
+    }
+  }
+
+  .card-1{
+    @include box-shadow('z-depth-1');
+  }
+
+  .card-2{
+    @include box-shadow('z-depth-2');
+  }
+
+  .card-3{
+    @include box-shadow('z-depth-3');
+  }
+
+  .card-4{
+    @include box-shadow('z-depth-4');
+  }
+
+  .card-5{
+    @include box-shadow('z-depth-5');
+    transition: all .3s;
+    &:hover {
+      @include box-shadow('z-depth-1');
+    }
+  }
+}
+
+.form {
+  padding: 15px;
+  display: flex;
+  justify-content: space-around;
+  flex-flow: row wrap;
+
+  @include breakpoint('phone'){
+    flex-flow: column wrap;
+    align-items: center;
+  }
+
+  input[type="text"],input[type="password"] {
+    margin-bottom: 15px;
+    @include input-text(material-color('pink','A200'));
+    width: 30%;
+    @include breakpoint('phone') {
+      width: 80%;
+    }
+  }
+
+  button {
+    @include button(material-color('pink', 'A200'));
+  }
+}

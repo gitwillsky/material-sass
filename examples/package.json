@@ -1,0 +1,16 @@
+{
+  "name": "material-sass-example",
+  "version": "1.0.0",
+  "description": "material sass example project.",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server .",
+    "watch": "sass --watch styles.scss:styles.css",
+    "dev": "http-server . & sass --watch styles.scss:styles.css"
+  },
+  "author": "willsky <hdu_willsky@foxmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "http-server": "^0.9.0"
+  }
+}

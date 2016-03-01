@@ -1,0 +1,19 @@
+## Material Sass
+
+这是一个Google Material设计语言在web上的实现，采用sass编写，需要什么效果直接使用sass `@include`语法
+进行引入。
+
+## Usage
+
+在每个文件中都有相关mixin 的使用示例。
+
+## Example
+
+观看example实例需要进行以下步骤：
+
+```
+$ npm install
+$ npm start
+```
+
+然后按照提示在浏览器中观看实例。

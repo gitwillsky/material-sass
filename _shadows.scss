@@ -1,0 +1,53 @@
+@charset "UTF-8";
+// Material Shadows
+//
+// Usage:
+//   .div {
+//     @include box-shadow("z-depth-1");
+//   }
+//
+// Shadow range: z-depth-1 ~ z-depth-5
+//
+
+$z-depth-1: (
+  shadow1: 0 1px 3px rgba(0,0,0,0.12),
+  shadow2: 0 1px 2px rgba(0,0,0,0.24)
+) !default;
+
+$z-depth-2: (
+  shadow1: 0 3px 6px rgba(0,0,0,0.16),
+  shadow2: 0 3px 6px rgba(0,0,0,0.23)
+) !default;
+
+$z-depth-3: (
+  shadow1: 0 10px 20px rgba(0,0,0,0.19),
+  shadow2: 0 6px 6px rgba(0,0,0,0.23)
+) !default;
+
+$z-depth-4: (
+  shadow1: 0 14px 28px rgba(0,0,0,0.25),
+  shadow2: 0 10px 10px rgba(0,0,0,0.22)
+) !default;
+
+$z-depth-5: (
+  shadow1: 0 19px 38px rgba(0,0,0,0.30),
+  shadow2: 0 15px 12px rgba(0,0,0,0.22)
+) !default;
+
+
+$shadows: (
+  "z-depth-1": map-values($z-depth-1),
+  "z-depth-2": map-values($z-depth-2),
+  "z-depth-3": map-values($z-depth-3),
+  "z-depth-4": map-values($z-depth-4),
+  "z-depth-5": map-values($z-depth-5)
+);
+
+
+@mixin box-shadow($name) {
+  @if map-has-key($shadows, $name) {
+    box-shadow: map-get($shadows, $name);
+  } @else {
+    @warn "Cant not find #{$name} in shadows.";
+  }
+}

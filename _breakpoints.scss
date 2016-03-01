@@ -1,0 +1,67 @@
+@charset "UTF-8";
+/* Material Responsive Breakpints*/
+/* Refer to:https://www.google.com/design/spec/layout/responsive-ui.html*/
+/* usage example:*/
+// .mydiv {
+//   flex: 1 20%;
+//   @include breakpoint('phone') {
+//     flex: 1 30%;
+//   }
+// }
+//
+
+/* Grid breakpoints*/
+/**/
+/* Define the minimum and maximum dimensions at which your layout will change,*/
+/* adapting to different screen sizes, for use in media queries.*/
+$grid-breakpoints: (
+  "tablet": 480px,
+  "desktop": 840px
+) !default;
+
+
+// breakpoint
+@mixin breakpoint($name, $breakpoints: $grid-breakpoints) {
+  @if $name == 'phone' {
+    @media (max-width: map-get($breakpoints, 'tablet')-1) {
+      @content;
+    }
+  } @else if $name == 'tablet' {
+    @media (min-width: map-get($breakpoints, 'tablet')) and
+       (max-width: map-get($breakpoints, 'desktop')-1) {
+         @content;
+       }
+  } @else if $name == 'desktop' {
+    @media(min-width: map-get($breakpoints, 'desktop')) {
+      @content;
+    }
+  } @else {
+    @warn "Can't found #{$name} in breakpoints";
+  }
+}
+
+// breakpoint-down
+@mixin breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+  $breakpoint-width: map-get($breakpoints, $name);
+  @if $breakpoint-width != 0 {
+    @media all and (max-width: $breakpoint-width) {
+      @content;
+    }
+  }
+  @else {
+    @content;
+  }
+}
+
+// breakpoint-up
+@mixin breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+  $breakpoint-width: map-get($breakpoints, $name);
+  @if $breakpoint-width != 0 {
+    @media all and (min-width: $breakpoint-width) {
+      @content;
+    }
+  }
+  @else {
+    @content;
+  }
+}

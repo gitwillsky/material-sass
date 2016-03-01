@@ -1,13 +1,15 @@
 @charset "UTF-8";
+@import "shadows";
+
 /**
 * usage:
 * button {
-*  @include button;
+*  @include button(#ccc);
 * }
 */
 
 // 基础button样式
-@mixin button {
+@mixin button($bgcolor:#ccc) {
   border: none;
   border-radius: 2px;
   height: 35px;
@@ -16,7 +18,14 @@
   padding: 0 1.5rem;
   display: inline-flex;
   vertical-align: middle;
+  color: #fff;
+  background-color: $bgcolor;
   -webkit-tap-highlight-color: transparent;
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
-  transition: ease-out .3s, ease-in .3s;
+  transition: ease-out .2s, ease-in .2s;
+  @include box-shadow('z-depth-1');
+  &:hover,&:focus {
+    @include box-shadow('z-depth-2');
+  }
 }
+
+// Floating button
