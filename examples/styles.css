@@ -374,7 +374,7 @@ body {
 
 header {
   /* 菜单shadow*/
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   /* 导航菜单列表*/ }
   header .nav-list {
     background-color: #1976D2;
@@ -420,34 +420,20 @@ article {
     margin-bottom: 2rem; }
 
 .shadows {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  flex-flow: row wrap;
-  align-items: stretch;
-  justify-content: center; }
-  @media (max-width: 479px) {
-    .shadows {
-      flex-flow: column wrap;
-      align-items: center; } }
-  @media (min-width: 480px) and (max-width: 839px) {
-    .shadows {
-      justify-content: flex-start; } }
+  flex-flow: row wrap; }
   .shadows div[class^="card-"] {
-    margin: 15px 15px 0 15px;
+    margin: 15px;
     border-radius: 2px;
     height: 200px;
-    width: 16.66667%;
-    background-color: #fff;
+    width: 200px;
+    flex: 1 0 200px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    font-size: 1.5rem; }
-    @media (max-width: 479px) {
-      .shadows div[class^="card-"] {
-        width: 90%;
-        margin: 15px 0 0 0; } }
-    @media (min-width: 480px) and (max-width: 839px) {
-      .shadows div[class^="card-"] {
-        width: 25%; } }
+    align-items: center; }
   .shadows .card-1 {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
   .shadows .card-2 {
@@ -458,18 +444,33 @@ article {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
   .shadows .card-5 {
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+    -webkit-transition: all .3s;
     transition: all .3s; }
     .shadows .card-5:hover {
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
 
 .form {
+  position: relative;
   padding: 15px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
   justify-content: space-around;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
   flex-flow: row wrap; }
   @media (max-width: 479px) {
     .form {
+      -webkit-flex-flow: column wrap;
+      -ms-flex-flow: column wrap;
       flex-flow: column wrap;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      -ms-grid-row-align: center;
       align-items: center; } }
   .form input[type="text"], .form input[type="password"] {
     margin-bottom: 15px;
@@ -510,9 +511,11 @@ article {
     color: #fff;
     background-color: #FF4081;
     -webkit-tap-highlight-color: transparent;
-    transition: ease-out .2s, ease-in .2s;
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 0.2s;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
-    .form button:hover, .form button:focus {
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+    .form button:active {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+      transition-delay: 0s; }
 
 /*# sourceMappingURL=styles.css.map */

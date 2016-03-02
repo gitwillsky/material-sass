@@ -18,7 +18,7 @@ body {
 
 header {
   /* 菜单shadow*/
-  @include box-shadow('z-depth-1');
+  @include box-shadow('z-depth-3');
 
   /* 导航菜单列表*/
   .nav-list {
@@ -72,38 +72,22 @@ article {
 }
 
 .shadows {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   flex-flow: row wrap;
-  align-items: stretch;
-  justify-content: center;
-
- @include breakpoint('phone') {
-   flex-flow: column wrap;
-   align-items: center;
- }
-
- @include breakpoint('tablet') {
-    justify-content: flex-start;
- }
 
   div[class^="card-"] {
-    margin: 15px 15px 0 15px;
+    margin: 15px;
     border-radius: 2px;
     height: 200px;
-    width: percentage(2/12);;
-    background-color: #fff;
+    width: 200px;
+    flex: 1 0 200px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
-    @include breakpoint('phone') {
-      width: 90%;
-      margin: 15px 0 0 0;
-    }
-    @include breakpoint('tablet') {
-      width: percentage(1/4);
-    }
-  }
+}
 
   .card-1{
     @include box-shadow('z-depth-1');
@@ -123,6 +107,7 @@ article {
 
   .card-5{
     @include box-shadow('z-depth-5');
+    -webkit-transition: all .3s;
     transition: all .3s;
     &:hover {
       @include box-shadow('z-depth-1');
@@ -131,14 +116,28 @@ article {
 }
 
 .form {
+  position: relative;
   padding: 15px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-around;
-  flex-flow: row wrap;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+  -webkit-flex-flow: row wrap;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
 
   @include breakpoint('phone'){
-    flex-flow: column wrap;
-    align-items: center;
+    -webkit-flex-flow: column wrap;
+        -ms-flex-flow: column wrap;
+            flex-flow: column wrap;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+                -ms-grid-row-align: center;
+            align-items: center;
   }
 
   input[type="text"],input[type="password"] {

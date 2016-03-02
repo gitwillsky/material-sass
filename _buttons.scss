@@ -21,10 +21,12 @@
   color: #fff;
   background-color: $bgcolor;
   -webkit-tap-highlight-color: transparent;
-  transition: ease-out .2s, ease-in .2s;
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0.2s;
   @include box-shadow('z-depth-1');
-  &:hover,&:focus {
-    @include box-shadow('z-depth-2');
+  &:active {
+    @include box-shadow('z-depth-3');
+    transition-delay: 0s;
   }
 }
 

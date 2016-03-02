@@ -12,6 +12,7 @@
 观看example实例需要进行以下步骤：
 
 ```
+$ cd examples
 $ npm install
 $ npm start
 ```
